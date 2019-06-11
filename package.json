@@ -1,0 +1,11 @@
+{
+  "name": "MEDIUM_CRAWLER",
+  "version": "1.0.0",
+  "description": "Medium premium content extractor",
+  "main": "index.js",
+  "author": "Amnac",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^1.17.0"
+  }
+}
