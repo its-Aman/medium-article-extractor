@@ -1,13 +1,13 @@
 const puppeteer = require('puppeteer');
 
-const loading = () => {
+const loading = (filename) => {
     const h = ['|', '/', '-', '\\'];
     let i = 0;
 
     return setInterval(() => {
         i = (i > 3) ? 0 : i;
         console.clear();
-        console.log(`Baking your stuff...\n`, h[i]);
+        console.log(h[i], `Downloading: ${filename}\n`);
         i++;
     }, 300);
 };
@@ -18,10 +18,12 @@ const loading = () => {
 
         try {
             if (process.argv[2] && process.argv[2].length) {
-                const loadStart = loading();
                 const url = process.argv[2];
                 let path = url.split('/');
-                path = path[path.length - 1] + '.pdf';
+                path = path[path.length - 1];
+                path = path.slice(0, path.length < 45 ? path.length : 45) + '.pdf';
+
+                const loadStart = loading(path);
 
                 const browser = await puppeteer.launch();
                 const page = await browser.newPage();
@@ -32,7 +34,7 @@ const loading = () => {
                 await browser.close();
                 clearInterval(loadStart);
                 console.clear();
-                console.log(`${path} article saved!!!`);
+                console.log(`Downloaded: ${path} !`);
             }
         } catch (err) {
             console.log(`Some error occoured \n`, err);
