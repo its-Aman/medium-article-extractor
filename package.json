@@ -6,6 +6,7 @@
   "author": "Amnac",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^1.17.0"
+    "puppeteer": "^1.17.0",
+    "request": "^2.88.0"
   }
 }
